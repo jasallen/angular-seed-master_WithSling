@@ -1,0 +1,125 @@
+﻿/* Prefix all pages with mb- for no collisions */
+
+/* Page class for all mobile pages */
+.mb-page {
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%; 
+}
+
+.sling-uber {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    background-color: blue;
+}
+
+.sling-windowTray {
+    position: absolute;
+    height: 100%;
+    display: block;
+    left:-100%;
+    width: 300%;
+    background-color: red;
+    
+}
+
+.sling-content {
+    left: 33.3333%;
+    position:absolute;
+    background-color: purple;     
+     width:33.3333%;
+     height: 100%;    
+     display: inline-block;
+}
+
+/* 
+ * Slide
+ * slide pages horizontally
+ */
+@-webkit-keyframes slideInFromRight {
+  0% { -webkit-transform: translate3d(100%, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes slideOutToRight {
+  0% { -webkit-transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(100%, 0, 0); }
+}
+@-webkit-keyframes slideInFromLeft {
+  0% { -webkit-transform: translate3d(-100%,0,0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes slideOutToLeft {
+  0% { -webkit-transform: translate3d(0,0,0); }
+  100% { -webkit-transform: translate3d(-100%, 0, 0); }
+}
+.mb-slide {
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-name: slideInFromRight;
+}
+.mb-slide.mb-in {
+  -webkit-animation-name: slideInFromRight;
+}
+.mb-slide.mb-in.sl-backbutton {
+  -webkit-animation-name: slideInFromLeft;
+  /*-webkit-transform: translate3d(100%,0,0);*/
+}
+.mb-slide.mb-in.mb-reverse {
+  -webkit-animation-name: slideOutToRight;
+  -webkit-transform: translate3d(100%,0,0);
+}
+.mb-slide.mb-out {
+  -webkit-animation-name: slideOutToLeft;
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.mb-slide.mb-out.sl-backbutton{
+  -webkit-animation-name: slideOutToRight;
+  -webkit-transform: translate3d(100%, 0, 0);
+}
+.mb-slide.mb-out.mb-reverse {
+  -webkit-animation-name: slideInFromLeft;
+}
+
+
+@-webkit-keyframes slingInFromRight {
+  0% { left:100px; }
+  100% { left:0px; }
+}
+
+.sling-slide{
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: slingInFromRight;
+  left:100px;
+}
+
+
+/*
+ * Modal!
+ * slide a page in from the bottom onto a page
+ */
+@-webkit-keyframes modalUp {
+  0% { -webkit-transform: translate3d(0, 100%, 0); }
+  100% { -webkit-transform: translate3d(0, 0, 0); }
+}
+@-webkit-keyframes modalDown {
+  0% { -webkit-transform: translate3d(0, 0, 0); }
+  100% { -webkit-transform: translate3d(0, 100%, 0); }
+}
+.mb-modal {
+  z-index: 10;
+  -webkit-animation-duration: 0.4s;
+}
+.mb-modal.mb-in,
+.mb-modal.mb-out.mb-reverse {
+  -webkit-animation-name: modalUp;
+}
+.mb-modal.mb-in.mb-reverse,
+.mb-modal.mb-out {
+  z-index: 9; /* Lower than modal-in */
+  -webkit-animation-name: modalDown;
+  -webkit-transform: translate3d(0, 100%, 0);
+}
